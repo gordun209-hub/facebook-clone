@@ -1,13 +1,11 @@
-import express, { Application, Request, Response } from 'express'
+import http from 'http'
 
-// Boot express
-const app: Application = express()
+import app from './app'
+
+const server = http.createServer(app)
 const port = 5000
-
 // Application routing
-app.use('/', (request: Request, res: Response) => {
-  res.status(200).send({ data: 'as' })
-})
+
 // Start server
 
-app.listen(port, () => console.log(`Server is listening on port ${port}!`))
+server.listen(port, () => console.log(`Server is listening on port ${port}!`))

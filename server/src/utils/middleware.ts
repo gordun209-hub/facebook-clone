@@ -35,4 +35,4 @@ const errorHandler = (
   next(error)
 }
 
-export { errorHandler, requestLogger, unknownEndpoint }
+export default { errorHandler, requestLogger, unknownEndpoint }
