@@ -3,23 +3,23 @@
   "extends": [
     "eslint:recommended",
     "plugin:import/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:ramda/recommended",
     "plugin:react-redux/recommended",
-    "next",
-    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": [
-    "@typescript-eslint",
-    "import",
     "react",
     "react-hooks",
+    "jsx-a11y",
+    "@typescript-eslint",
+    "import",
     "simple-import-sort",
     "ramda",
-    "react-redux",
-    "prettier"
+    "react-redux"
   ],
 
   "rules": {
@@ -29,15 +29,9 @@
     "import/no-named-as-default-member": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
-    "react/button-has-type": 1,
-    "react/destructuring-assignment": 1,
-    "react/hook-use-state": 1,
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "react/no-array-index-key": 2,
-    "react/no-typos": 2,
-    "react/prefer-stateless-function": 2,
-    // "react/jsx-curly-spacing": [2, "always"],
+
     "react/jsx-sort-props": [
       "warn",
       {

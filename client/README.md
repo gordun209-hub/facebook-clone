@@ -1,1 +1,0 @@
-nextjs redux starter boilerplate
