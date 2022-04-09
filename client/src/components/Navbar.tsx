@@ -21,6 +21,7 @@ export default function Navbar() {
           <>
             <LogoutButton />
             <li>
+              <label>welcome again! {user.user.name}</label>
               <Link to='/admin'>
                 <button className='btn-blue'>Write Posts</button>
               </Link>

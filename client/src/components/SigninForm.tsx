@@ -5,12 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks'
 import { setCredentials } from '@/features/auth/authSlice'
 import { useLoginMutation } from '@/services/auth'
+import { setToLocalStorage } from '@/utils/useLocalStorage'
 
-interface IFormInput {
-  username: string
-  password: string
-  confirmPassword: string
-}
+import { ILoginFormInput } from '../types/User'
+
 const SigninForm = () => {
   const navigate = useNavigate()
   const [login, { isLoading }] = useLoginMutation()
@@ -20,18 +18,24 @@ const SigninForm = () => {
     register,
     formState: { errors },
     handleSubmit
-  } = useForm<IFormInput>()
-  const onSubmit: SubmitHandler<IFormInput> = async data => {
+  } = useForm<ILoginFormInput>()
+  const onSubmit: SubmitHandler<ILoginFormInput> = async data => {
     const { confirmPassword, password, username } = data
-
     password !== confirmPassword
       ? setPasswordError('Passwords do not match')
       : setPasswordError('')
-    const user = await login({ username, password }).unwrap()
-    dispatch(setCredentials(user))
-    localStorage.setItem('user', JSON.stringify(user.user))
-    localStorage.setItem('token', JSON.stringify(user.token))
-    navigate('/')
+
+    if (passwordError === '') {
+      const user = await login({ username, password }).unwrap()
+      dispatch(setCredentials(user))
+      setToLocalStorage('user', user.user)
+      setToLocalStorage('token', user.token)
+      navigate('/')
+    }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -58,8 +62,8 @@ const SigninForm = () => {
           })}
         />
         {errors.password?.type === 'required' && 'Password is required'}
-        {errors.password?.type === 'maxLength' &&
-          'Password must be 20 characters or less'}
+        {errors.password?.type === 'minLength' &&
+          'Password must be between 6 and 20 characters'}
       </div>
       <div>
         <label htmlFor='confirmPassword'>confirm password</label>

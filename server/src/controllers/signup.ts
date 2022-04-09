@@ -35,7 +35,7 @@ signupRouter.post('/', async (req, res) => {
   })
   res.json({
     token: sign({ userId: user?.id }, '31'),
-    newUser
+    user: newUser
   })
 })
 

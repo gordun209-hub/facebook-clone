@@ -1,23 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { api, User } from '@/services/auth'
+import { User } from '@/types/User'
 
 import type { RootState } from '../../app/store'
+import { stringifyToLocalStorage } from '../../utils/useLocalStorage'
 
 export type AuthState = {
   user: User | null
   token: string | null
 }
-// const initialState: AuthState = {
-//   user: window.localStorage.getItem('user')
-//     ? JSON.parse(window.localStorage.getItem('user') as string)
-//     : null,
-//   token: window.localStorage.getItem('token') || null
-// }
+
 const initialState: AuthState = {
-  user: null,
-  token: null
+  user: stringifyToLocalStorage('user'),
+  token: stringifyToLocalStorage('token')
 }
+
 const slice = createSlice({
   name: 'auth',
   initialState,
@@ -29,12 +26,14 @@ const slice = createSlice({
       state.user = user
       state.token = token
     },
+
     logOut: state => {
       state.user = null
       state.token = null
     }
   }
 })
+// set credentials after dispatch
 
 export const { setCredentials, logOut } = slice.actions
 

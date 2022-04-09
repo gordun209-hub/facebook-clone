@@ -1,23 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { RootState } from '../app/store'
-
-export interface User {
-  email: string
-  username: string
-  name: string
-  id: string
-}
-
-export interface UserResponse {
-  user: User
-  token: string
-}
-
-export interface LoginRequest {
-  username: string
-  password: string
-}
+import { LoginRequest, SignUpRequest, UserResponse } from '../types/User'
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -39,6 +23,13 @@ export const api = createApi({
         body: credentials
       })
     }),
+    signup: builder.mutation<UserResponse, SignUpRequest>({
+      query: credentials => ({
+        url: 'signup',
+        method: 'POST',
+        body: credentials
+      })
+    }),
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected'
     }),
@@ -54,6 +45,7 @@ export const api = createApi({
 export const {
   useLoginMutation,
   useProtectedMutation,
-  useGetLoggedInUserDataQuery
+  useGetLoggedInUserDataQuery,
+  useSignupMutation
 } = api
 export default api

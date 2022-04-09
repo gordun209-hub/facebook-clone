@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuth } from '@/utils/useAuth'
+import { useAppSelector } from '@/app/hooks'
 
 const ProtectedPage = () => {
   const navigate = useNavigate()
-  const user = useAuth().user?.username
+  const user = useAppSelector(state => state.auth.user)
   useEffect(() => {
     if (!user) {
       navigate('/login')

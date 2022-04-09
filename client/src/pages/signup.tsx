@@ -3,24 +3,22 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
-import SigninForm from '@/components/SigninForm'
+import SignUpForm from '@/components/SignUpForm'
 import { selectCurrentUser } from '@/features/auth/authSlice'
 
-export const Login = () => {
+export const SignUp = () => {
   const user = useAppSelector(selectCurrentUser)
   const navigate = useNavigate()
-
   useEffect(() => {
     if (user?.username !== undefined) {
       navigate('/')
     }
   }, [navigate, user])
-
   return (
     <Center h='700px'>
-      <SigninForm />
+      <SignUpForm />
     </Center>
   )
 }
 
-export default Login
+export default SignUp
