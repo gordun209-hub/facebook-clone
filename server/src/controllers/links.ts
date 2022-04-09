@@ -12,7 +12,7 @@ const getTokenFrom = (req: Router.Request) => {
 }
 
 const linksRouter = Router()
-
+// get all links
 linksRouter.get('/', async (_req, res) => {
   const links = await prisma.link.findMany({
     include: {
@@ -22,9 +22,9 @@ linksRouter.get('/', async (_req, res) => {
   })
   res.json(links)
 })
-
+// get spesific link by id
 linksRouter.get('/:id', async (req, res) => {
-  const note = await prisma.link.findUnique({
+  const link = await prisma.link.findUnique({
     where: {
       id: Number(req.params.id)
     },
@@ -33,10 +33,22 @@ linksRouter.get('/:id', async (req, res) => {
       voters: true
     }
   })
-  if (note) res.json(note)
-  if (!note) res.json({ error: 'Link not found' })
+  if (link) res.json(link)
+  if (link) res.json({ error: 'Link not found' })
 })
 
+// get users links
+linksRouter.get('/userLinks/:id', async (req, res) => {
+  const links = await prisma.link.findMany({
+    where: {
+      postedBy: {
+        id: Number(req.params.id)
+      }
+    }
+  })
+  res.json(links)
+})
+// create new link
 linksRouter.post('/', async (req, res) => {
   const { url, description } = req.body
   const token = getTokenFrom(req)
