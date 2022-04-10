@@ -23,20 +23,25 @@ signupRouter.post('/', async (req, res) => {
     res.status(400).json({ error: 'Username already exists' })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  const newUser = await prisma.user.create({
-    data: {
-      username,
-      password: hashedPassword,
-      email,
-      name,
-      links: {},
-      votes: {}
-    }
-  })
-  res.json({
-    token: sign({ userId: user?.id }, '31'),
-    user: newUser
-  })
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        username,
+        password: hashedPassword,
+        email,
+        name,
+        links: {},
+        votes: {},
+        imageUrl: 'https://i.pravatar.cc/300'
+      }
+    })
+    res.json({
+      token: sign({ userId: user?.id }, '31'),
+      user: newUser
+    })
+  } catch (e) {
+    res.json({ error: 'Something went wrong' }).status(403)
+  }
 })
 
 export default signupRouter

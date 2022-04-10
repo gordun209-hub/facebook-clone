@@ -23,15 +23,20 @@ signinRouter.post('/', async (req, res) => {
   const isPasswordValid =
     user === null ? false : await bcrypt.compare(password, user?.password)
   if (!(user && isPasswordValid)) {
-    res.status(400).json({ error: 'Invalid username or password' })
+    res.json({ error: 'Invalid username or password' })
   }
-  const token = jwt.sign({ userId: user?.id, username: user?.username }, '31')
-  res
-    .json({
-      token,
-      user
-    })
-    .status(200)
+  try {
+    const token = jwt.sign({ userId: user?.id, username: user?.username }, '31')
+    console.log(token)
+    res
+      .json({
+        token,
+        user
+      })
+      .status(200)
+  } catch (e) {
+    res.json({ error: 'Something went wrong' }).status(403)
+  }
 })
 
 export default signinRouter

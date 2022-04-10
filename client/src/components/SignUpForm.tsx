@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { useSignupMutation } from '@/services/auth'
+import { useSignupMutation } from '@/services/api'
 import { ISignupFormInput } from '@/types/User'
 
 import { useAppDispatch } from '../app/hooks'

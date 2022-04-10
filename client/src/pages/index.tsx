@@ -1,14 +1,14 @@
+import { Container } from '@mantine/core'
+
+import LinkCard from '@/components/LinkCard'
+import { useGetLinksQuery } from '@/services/api'
+
 const Home = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        doloremque, quidem quisquam, quisquam quisquam quisquam quisquam
-        dignissimos.
-      </p>
-    </div>
-  )
+  // const { data, isLoading } = useGetLinksQuery()
+  // if (data) {
+  // console.log(data)
+  // }
+  return <Container>{/* <LinkCard /> */}</Container>
 }
 
 export default Home

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
 import { setCredentials } from '@/features/auth/authSlice'
-import { useLoginMutation } from '@/services/auth'
+import { useLoginMutation } from '@/services/api'
 import { setToLocalStorage } from '@/utils/useLocalStorage'
 
 import { ILoginFormInput } from '../types/User'

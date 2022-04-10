@@ -12,18 +12,16 @@ export default function Navbar() {
       <ul>
         <li>
           <Link to='/'>
-            <button className='btn-logo'>NXT</button>
+            <button className='btn-logo'>Blogs</button>
           </Link>
         </li>
 
-        {/* user is signed-in and has username */}
         {user?.user?.name && (
           <>
             <LogoutButton />
             <li>
-              <label>welcome again! {user.user.name}</label>
               <Link to='/admin'>
-                <button className='btn-blue'>Write Posts</button>
+                <button className='btn-blue'> profile page</button>
               </Link>
             </li>
             <li>
@@ -32,7 +30,6 @@ export default function Navbar() {
           </>
         )}
 
-        {/* user is not signed OR has not created username */}
         {!user.user?.name && (
           <li>
             <Link to='/login'>

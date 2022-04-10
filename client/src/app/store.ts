@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/features/counter/counterSlice'
 
 import authReducer from '../features/auth/authSlice'
-import { api } from '../services/auth'
+import { api } from '../services/api'
 
 export const store = configureStore({
   reducer: {

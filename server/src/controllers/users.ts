@@ -11,19 +11,20 @@ usersRouter.get('/', async (req, res) => {
   res.json(users)
 })
 usersRouter.get('/:id/', async (req, res) => {
-  console.log(req.params.id, 'qopwiejpqowedqwiej')
   //@ts-ignore
   const id = req.params.id
   //@ts-ignore
-
-  const user = await prisma.user.findUnique({
-    where: {
-      id: +id
-    }
-  })
-  if (user) res.json(user)
-
-  if (!user) res.json({ error: 'User not found' })
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: +id
+      }
+    })
+    if (user) res.json(user).status(200)
+    if (!user) res.status(404).json({ error: 'User not found' })
+  } catch (err) {
+    res.status(404).json({ error: 'User not found' })
+  }
 })
 
 export default usersRouter

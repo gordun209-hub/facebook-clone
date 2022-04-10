@@ -72,14 +72,18 @@
   },
   "overrides": [
     {
-      "files": ["**/__test__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ], // Override config for same files pattern as jest `testMatch` default value
       "extends": [
         "plugin:jest/recommended",
         "plugin:jest/style",
+        "plugin:cypress/recommended",
         "plugin:jest-dom/recommended",
         "plugin:testing-library/react"
       ],
-      "plugins": ["jest", "jest-dom", "testing-library"],
+      "plugins": ["jest", "testing-library", "jest-dom"],
       "rules": {
         "jest/no-disabled-tests": "warn",
         "jest/no-focused-tests": "error",

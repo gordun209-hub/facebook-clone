@@ -15,6 +15,6 @@ app.use(middleware.errorHandler)
 app.use(middleware.requestLogger)
 app.use('/api/signin', signinRouter)
 app.use('/api/signup', signUpRouter)
-app.use('/api/link', linksRouter)
+app.use('/api/links', linksRouter)
 app.use('/api/users', userRouter)
 export default app

@@ -1,9 +1,9 @@
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import Pages from 'vite-plugin-pages'
 import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
+import Pages from 'vite-plugin-pages'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), reactRefresh(), legacy(), Pages()],

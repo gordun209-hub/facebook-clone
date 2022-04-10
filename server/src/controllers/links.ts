@@ -49,26 +49,28 @@ linksRouter.get('/userLinks/:id', async (req, res) => {
   res.json(links)
 })
 // create new link
-linksRouter.post('/', async (req, res) => {
-  const { url, description } = req.body
-  const token = getTokenFrom(req)
-  if (token) {
-    const { userId } = jwt.verify(token, '31') as { userId: number }
-    const link = await prisma.link.create({
-      data: {
-        url,
-        description,
-        postedBy: {
-          connect: {
-            id: userId
-          }
-        }
-      }
-    })
-    res.json(link)
-  } else {
-    res.status(401).json({ error: 'Not authorized' })
-  }
-})
+// linksRouter.post('/', async (req, res) => {
+//   const { url, description, country } = req.body
+//   const token = getTokenFrom(req)
+//   if (token) {
+//     const { userId } = jwt.verify(token, '31') as { userId: number }
+//     const link = await prisma.link.create({
+//       data: {
+//         url,
+//         description,
+//         country,
+
+//         postedBy: {
+//           connect: {
+//             id: userId
+//           }
+//         }
+//       }
+//     })
+//     res.json(link)
+//   } else {
+//     res.status(401).json({ error: 'Not authorized' })
+//   }
+// })
 
 export default linksRouter
