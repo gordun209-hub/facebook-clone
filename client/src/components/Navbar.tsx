@@ -74,8 +74,6 @@ export default function Navbar() {
           color: #fff;
         }
          
-
-         
       `}</style>
     </nav>
   )

@@ -64,6 +64,64 @@ export function BadgeCard({
         {voters.length}
         {postedBy.name}
       </Group>
+      <style>
+        {`
+          .card {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ccc;
+            background-color: #fff;
+            font-size: 1.2rem;
+          }
+          .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          .label {
+            font-size: 1.2rem;
+            font-weight: 500;
+          }
+          .like {
+            color: #e74c3c;
+          }
+
+          @media (max-width: 768px) {
+            .card {
+              width: 100%;
+              max-width: 100%;
+              margin: 0 auto;
+              padding: 40px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              box-shadow: 0 0 5px #ccc;
+              background-color: #fff;
+              font-size: 1.2rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .card {
+              width: 100%;
+              max-width: 100%;
+              margin: 0 auto;
+              padding: 40px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              box-shadow: 0 0 5px #ccc;
+              background-color: #fff;
+              font-size: 1.2rem;
+            }
+          }
+
+
+        `}{' '}
+      </style>
     </Card>
   )
 }
