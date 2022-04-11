@@ -10,6 +10,7 @@ const Home = () => {
       <Container>
         {data.map(link => (
           <Container
+            
             key={link.id}
             mb='md'
             style={{

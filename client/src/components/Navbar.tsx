@@ -8,11 +8,11 @@ export default function Navbar() {
   const user = useAuth()
 
   return (
-    <nav className='navbar'>
+    <nav>
       <ul>
         <li>
           <Link to='/'>
-            <button className='btn-logo'>Blogs</button>
+            <button>Blogs</button>
           </Link>
         </li>
 
@@ -21,7 +21,7 @@ export default function Navbar() {
             <LogoutButton />
             <li>
               <Link to='/admin'>
-                <button className='btn-blue'> profile page</button>
+                <button> profile page</button>
               </Link>
             </li>
             <li>
@@ -33,11 +33,50 @@ export default function Navbar() {
         {!user.user?.name && (
           <li>
             <Link to='/login'>
-              <button className='btn-blue'>Log in</button>
+              <button>Log in</button>
             </Link>
           </li>
         )}
       </ul>
+      <style>{`
+        nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 1rem;
+        }
+        ul { 
+          display: flex;
+          list-style: none;
+        }
+        li {
+          margin: 0 1rem;
+        }
+        button {
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 0 5px #ccc;
+          font-size: 1.2rem;
+          font-family: sans-serif;
+          color: #333;
+          text-align: center;
+          box-sizing: border-box;
+          user-select: none;
+          cursor: pointer;
+
+          transition: all 0.3s ease-in-out;
+          padding: 0.5rem 1rem;
+        }
+        button:hover {
+          background-color: #ccc;
+          border: 1px solid #ccc;
+          color: #fff;
+        }
+         
+
+         
+      `}</style>
     </nav>
   )
 }

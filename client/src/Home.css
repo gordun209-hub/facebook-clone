@@ -54,13 +54,6 @@ input {
   width: 100%;
   padding: 5px 10px;
 }
-
-fieldset {
-  border: none;
-  padding: 1rem 0;
-  font-size: 1.25rem;
-}
-
 code {
   overflow-x: scroll;
 }
@@ -68,7 +61,7 @@ code {
 /* Navbar */
 
 .navbar {
-  height: 70px;
+  height: 7px;
   width: 100%;
   background: white;
   color: var(--colors-text);
@@ -78,16 +71,6 @@ code {
   font-weight: bold;
   border-bottom: 1px solid var(--color-gray);
   z-index: 99;
-}
-
-.navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
 }
 
 .navbar img {
