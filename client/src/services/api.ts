@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { Link } from '@/types/Link'
 
-import { RootState } from '../app/store'
 import { LoginRequest, SignUpRequest, UserResponse } from '../types/User'
 
 export const api = createApi({
@@ -26,15 +25,14 @@ export const api = createApi({
         body: credentials
       })
     }),
-    protected: builder.mutation<{ message: string }, void>({
-      query: () => 'protected'
-    }),
+
     getLoggedInUserData: builder.query({
       query: id => ({
         url: `/users/${id}`,
         method: 'GET'
       })
     }),
+
     getLinks: builder.query<Link[], void>({
       query: () => '/links'
     })
@@ -43,7 +41,7 @@ export const api = createApi({
 
 export const {
   useLoginMutation,
-  useProtectedMutation,
+
   useGetLoggedInUserDataQuery,
   useSignupMutation,
   useGetLinksQuery

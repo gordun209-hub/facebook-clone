@@ -29,10 +29,7 @@ signupRouter.post('/', async (req, res) => {
         username,
         password: hashedPassword,
         email,
-        name,
-        links: {},
-        votes: {},
-        imageUrl: 'https://i.pravatar.cc/300'
+        name
       }
     })
     res.json({

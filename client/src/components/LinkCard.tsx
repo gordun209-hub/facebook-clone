@@ -3,52 +3,28 @@ import {
   Badge,
   Button,
   Card,
-  createStyles,
   Group,
   Image,
-  Text,
-  useMantineTheme
+  Text
 } from '@mantine/core'
+import { formatDistance } from 'date-fns'
 import { Heart } from 'tabler-icons-react'
 
+import useStyles from '@/styles/mantinestyles'
 import { Link } from '@/types/Link'
 
-const useStyles = createStyles(theme => ({
-  card: {
-    backgroundColor:
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white
-  },
-
-  section: {
-    borderBottom: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
-    paddingBottom: theme.spacing.md
-  },
-
-  like: {
-    color: theme.colors.red[6]
-  },
-
-  label: {
-    textTransform: 'uppercase',
-    fontSize: theme.fontSizes.xs,
-    fontWeight: 700
-  }
-}))
-
 export function BadgeCard({
-  url,
-  title,
-  description,
   country,
-
-  voters
+  createdAt,
+  description,
+  postedBy,
+  url,
+  voters,
+  title
 }: Link) {
   const { classes } = useStyles()
-  // const theme = useMantineTheme()
+
+  const date = formatDistance(new Date(createdAt), new Date())
 
   return (
     <Card withBorder radius='md' p='md' className={classes.card}>
@@ -66,6 +42,7 @@ export function BadgeCard({
         <Text size='sm' mt='xs'>
           {description}
         </Text>
+        {date} ago
       </Card.Section>
 
       <Card.Section className={classes.section}>
@@ -82,9 +59,10 @@ export function BadgeCard({
           Show details
         </Button>
         <ActionIcon variant='default' radius='md' size={36}>
-          <Heart size={18} className={classes.like} />
+          <Heart size={18} className={classes.like} /> {voters.length}
         </ActionIcon>
         {voters.length}
+        {postedBy.name}
       </Group>
     </Card>
   )

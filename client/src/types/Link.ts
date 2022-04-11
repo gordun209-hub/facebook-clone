@@ -6,7 +6,6 @@ export interface Link {
   description: string
   url: string
   postedBy: User
-  postedById: number
   title: string
 
   country: string

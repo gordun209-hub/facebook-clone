@@ -1,15 +1,7 @@
 import Router from 'express'
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 
 import { prisma } from '../utils/prisma'
-
-const getTokenFrom = (req: Router.Request) => {
-  const authorization = req.get('authorization')
-  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-    return authorization.substring(7)
-  }
-  return null
-}
 
 const linksRouter = Router()
 // get all links
@@ -48,29 +40,33 @@ linksRouter.get('/userLinks/:id', async (req, res) => {
   })
   res.json(links)
 })
-// create new link
-// linksRouter.post('/', async (req, res) => {
-//   const { url, description, country } = req.body
-//   const token = getTokenFrom(req)
-//   if (token) {
-//     const { userId } = jwt.verify(token, '31') as { userId: number }
-//     const link = await prisma.link.create({
-//       data: {
-//         url,
-//         description,
-//         country,
 
-//         postedBy: {
-//           connect: {
-//             id: userId
-//           }
-//         }
-//       }
-//     })
-//     res.json(link)
-//   } else {
-//     res.status(401).json({ error: 'Not authorized' })
-//   }
-// })
+linksRouter.post('/', async (req, res) => {
+  const { url, description, country, title } = req.body
+
+  const token = req.headers.authorization?.substring(7)
+  if (token) {
+    console.log(token)
+    const { userId } = jwt.verify(token, '31') as JwtPayload
+    try {
+      const link = await prisma.link.create({
+        data: {
+          url,
+          description,
+          country,
+          title,
+          postedBy: {
+            connect: {
+              id: userId
+            }
+          }
+        }
+      })
+      res.json(link).status(201)
+    } catch (e) {
+      res.json(e).status(400)
+    }
+  }
+})
 
 export default linksRouter

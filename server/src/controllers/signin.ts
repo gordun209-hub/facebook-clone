@@ -27,7 +27,6 @@ signinRouter.post('/', async (req, res) => {
   }
   try {
     const token = jwt.sign({ userId: user?.id, username: user?.username }, '31')
-    console.log(token)
     res
       .json({
         token,
