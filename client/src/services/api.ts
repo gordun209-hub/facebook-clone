@@ -44,21 +44,40 @@ export const api = createApi({
     getLinks: builder.query<Link[], void>({
       query: () => '/links'
     }),
+    getUserLinks: builder.query<Link[], number>({
+      query: id => `/links/userLinks/${id}`
+    }),
+
     createLink: builder.mutation<Link, Link>({
       query: link => ({
         url: '/links',
         method: 'POST',
         body: link
       })
+    }),
+    updateLink: builder.mutation<Link, Link>({
+      query: link => ({
+        url: `/links/${link.id}`,
+        method: 'PUT',
+        body: link
+      })
+    }),
+    deleteLink: builder.mutation<void, Link>({
+      query: link => ({
+        url: `/links/${link.id}`,
+        method: 'DELETE'
+      })
     })
   })
 })
-
 export const {
   useLoginMutation,
   useCreateLinkMutation,
   useGetLoggedInUserDataQuery,
   useSignupMutation,
-  useGetLinksQuery
+  useGetLinksQuery,
+  useDeleteLinkMutation,
+  useUpdateLinkMutation,
+  useGetUserLinksQuery
 } = api
 export default api

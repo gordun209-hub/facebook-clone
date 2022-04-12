@@ -2,7 +2,7 @@ export interface User {
   email: string
   username: string
   name: string
-  id: string
+  id: number
 }
 
 export interface UserResponse {

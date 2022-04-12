@@ -1,23 +1,21 @@
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
-import { useCreateLinkMutation } from '@/services/api'
+import { useUpdateLinkMutation } from '@/services/api'
 import { Link } from '@/types/Link'
 
-const CreateLink: FC = () => {
-  const navigation = useNavigate()
-  const [createLink] = useCreateLinkMutation()
+const EditLinkForm: FC = () => {
+  const [editLink] = useUpdateLinkMutation()
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<Link>()
   const onSubmit = (data: Link) => {
-    createLink({
+    console.log(data)
+    editLink({
       ...data
     })
-    navigation('/')
   }
   const initialValues = {
     url: '',
@@ -63,7 +61,7 @@ const CreateLink: FC = () => {
           />
         </div>
 
-        <button type='submit'>Share link</button>
+        <button type='submit'>Edit</button>
       </form>
       <style>
         {`
@@ -153,4 +151,4 @@ const CreateLink: FC = () => {
   )
 }
 
-export default CreateLink
+export default EditLinkForm

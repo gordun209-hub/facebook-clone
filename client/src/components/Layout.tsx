@@ -1,12 +1,15 @@
-import { useAppSelector } from '@/app/hooks'
-import { selectCurrentUser } from '@/features/auth/authSlice'
+import axios from 'axios'
+import { useQuery } from 'react-query'
 
-const NeedToBeAuthorizedComponent = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
-  const user = useAppSelector(selectCurrentUser)
-  console.log(user)
-  return { children }
-}
+// const QueryExample = () => {
+//   const { isLoading, error, data, isFetching } = useQuery('repoData', () =>
+//     axios.get('http://localhost:5000/api/links').then(res => res.data)
+//   )
+
+//   if (isLoading) return <p>Loading...</p>
+//   if (error) return <p>Error :(</p>
+//   if (isFetching) return <p>Fetching...</p>
+//   return <div></div>
+// }
+
+export default QueryExample

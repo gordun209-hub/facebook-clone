@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/features/counter/counterSlice'
 
 import authReducer from '../features/auth/authSlice'
+import userActionReducer from '../features/userActions/userActionSlice'
 import { api } from '../services/api'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     auth: authReducer,
+    userAction: userActionReducer,
     [api.reducerPath]: api.reducer
   },
 

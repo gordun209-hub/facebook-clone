@@ -34,13 +34,16 @@ linksRouter.get('/userLinks/:id', async (req, res) => {
   const links = await prisma.link.findMany({
     where: {
       postedBy: {
-        id: Number(req.params.id)
+        id: Number(req?.params?.id)
       }
+    },
+    include: {
+      voters: true,
+      postedBy: true
     }
   })
   res.json(links)
 })
-console.log('branch changed')
 linksRouter.post('/', async (req, res) => {
   const { url, description, country, title } = req.body
 
@@ -67,6 +70,30 @@ linksRouter.post('/', async (req, res) => {
       res.json(e).status(400)
     }
   }
+})
+linksRouter.put('/:id', async (req, res) => {
+  const { url, description, country, title } = req.body
+  const link = await prisma.link.update({
+    where: {
+      id: Number(req.params.id)
+    },
+    data: {
+      url,
+      description,
+      country,
+      title
+    }
+  })
+  res.json(link)
+})
+
+linksRouter.delete('/:id', async (req, res) => {
+  const link = await prisma.link.delete({
+    where: {
+      id: Number(req.params.id)
+    }
+  })
+  res.json(link)
 })
 
 export default linksRouter
